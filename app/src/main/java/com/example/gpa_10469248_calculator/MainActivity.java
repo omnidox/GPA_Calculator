@@ -4,7 +4,9 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Context;
 import android.os.Bundle;
+import android.text.Editable;
 import android.text.TextUtils;
+import android.text.TextWatcher;
 import android.view.View;
 import android.view.inputmethod.InputMethodManager;
 import android.widget.Button;
@@ -33,8 +35,14 @@ public class MainActivity extends AppCompatActivity {
         Grade3 = findViewById(R.id.editTextNumber3);
         Grade4 = findViewById(R.id.editTextNumber4);
         Grade5 = findViewById(R.id.editTextNumber5);
-        mainLayout = (LinearLayout)findViewById(R.id.linear_layout);
+        mainLayout = (LinearLayout) findViewById(R.id.linear_layout);
         Compute_GPA = findViewById(R.id.calculate_gpa_button);
+
+        resetButtonOnType(Grade1);
+        resetButtonOnType(Grade2);
+        resetButtonOnType(Grade3);
+        resetButtonOnType(Grade4);
+        resetButtonOnType(Grade5);
 
         Compute_GPA.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -53,8 +61,7 @@ public class MainActivity extends AppCompatActivity {
                 tilcourse4.setErrorEnabled(false);
                 tilcourse5.setErrorEnabled(false);
 
-                if(button.getText().equals("Clear Form"))
-                {
+                if (button.getText().equals("Clear Form")) {
 
 
                     button.setText("Compute GPA");
@@ -63,8 +70,9 @@ public class MainActivity extends AppCompatActivity {
                     Grade3.setText("");
                     Grade4.setText("");
                     Grade5.setText("");
+                    textView.setText("");
 
-                    InputMethodManager imm = (InputMethodManager)getSystemService(Context.INPUT_METHOD_SERVICE);
+                    InputMethodManager imm = (InputMethodManager) getSystemService(Context.INPUT_METHOD_SERVICE);
                     imm.hideSoftInputFromWindow(mainLayout.getWindowToken(), 0);
 
                     return;
@@ -101,19 +109,36 @@ public class MainActivity extends AppCompatActivity {
                         textView.setText("Your GPA :" + grade_final);
                         button.setText("Clear Form");
 
-                        InputMethodManager imm = (InputMethodManager)getSystemService(Context.INPUT_METHOD_SERVICE);
+                        InputMethodManager imm = (InputMethodManager) getSystemService(Context.INPUT_METHOD_SERVICE);
                         imm.hideSoftInputFromWindow(mainLayout.getWindowToken(), 0);
 
-                    }
-                    else{
+                    } else {
                         Toast.makeText(MainActivity.this, "Input range is 100 to 0 inclusive",
-                        Toast.LENGTH_SHORT).show();
+                                Toast.LENGTH_SHORT).show();
                     }
-
-
 
 
                 }
+            }
+        });
+    }
+
+    private void resetButtonOnType(EditText grade) {
+        grade.addTextChangedListener(new TextWatcher() {
+            @Override
+            public void beforeTextChanged(CharSequence s, int start, int count, int after) {
+
+            }
+
+            @Override
+            public void onTextChanged(CharSequence s, int start, int before, int count) {
+                Compute_GPA.setText("Compute GPA");
+
+            }
+
+            @Override
+            public void afterTextChanged(Editable s) {
+
             }
         });
     }
