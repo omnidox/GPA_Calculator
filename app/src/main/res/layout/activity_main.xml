@@ -1,10 +1,17 @@
 <?xml version="1.0" encoding="utf-8"?>
+
+<ScrollView
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/scroll"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content">
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:id="@+id/linear_layout"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/linear_layout"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="#FAF5F5"
     android:orientation="vertical"
     tools:context=".MainActivity">
 
@@ -13,8 +20,8 @@
         android:id="@+id/floating_hint_Course1"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        app:helperTextTextAppearance="@style/FloatingHintStyle"
-        app:errorEnabled="false">
+        app:errorEnabled="false"
+        app:helperTextTextAppearance="@style/FloatingHintStyle">
 
         <EditText
             android:id="@+id/editTextNumber"
@@ -26,7 +33,6 @@
 
 
     </com.google.android.material.textfield.TextInputLayout>
-
 
 
     <com.google.android.material.textfield.TextInputLayout
@@ -94,6 +100,7 @@
     </com.google.android.material.textfield.TextInputLayout>
 
     <LinearLayout
+        android:id="@+id/linear_layout2"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:gravity="center|top"
@@ -123,3 +130,5 @@
 
 
 </LinearLayout>
+
+</ScrollView>
